@@ -17,7 +17,15 @@ def next_shape():
         c.itemconfigure(shape,state=NORMAL) #show the shape on GUI
         current_color = c.itemcget(shape,'fill') #retrieve the 'fill' color form current shape
         root.after(1000,next_shape)
-
+    else: #there are no more shapes in the list, game is over
+        c.unbind('q')
+        c.unbind('p')
+        if player1_score > player2_score:
+            c.create_text(200,200,text='Winner: Player 1')
+        elif player2_score > player1_score:
+            c.create_text(200,200,text='Winner: Player 2')
+        else:
+            c.create_text(200, 200, text='Draw')
 
 def snap():
 
