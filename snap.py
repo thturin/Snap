@@ -17,7 +17,7 @@ def next_shape():
         c.itemconfigure(shape,state=NORMAL) #show the shape on GUI
         current_color = c.itemcget(shape,'fill') #retrieve the 'fill' color form current shape
         root.after(1000,next_shape)
-    else: #there are no more shapes in the list, game is over
+    else: #there are no more shapes in the list, game is over and show winner score on GUI
         c.unbind('q')
         c.unbind('p')
         if player1_score > player2_score:
@@ -26,8 +26,14 @@ def next_shape():
             c.create_text(200,200,text='Winner: Player 2')
         else:
             c.create_text(200, 200, text='Draw')
+        c.pack()
+def snap(event):
+    global shape
+    global player1_score
+    global player2_score
+    valid = False
 
-def snap():
+    c.delete(shape)
 
 ############### setup ###############################
 root = Tk()
