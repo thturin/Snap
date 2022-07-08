@@ -27,6 +27,8 @@ def next_shape():
         else:
             c.create_text(200, 200, text='Draw')
         c.pack()
+
+
 def snap(event):
     global shape
     global player1_score
@@ -34,6 +36,20 @@ def snap(event):
     valid = False
 
     c.delete(shape)
+
+    if previous_color == current_color:
+        valid = True
+
+    if valid:
+        if event.char == 'q':
+            player1_score+=1
+        else:
+            player2_score+=1
+        shape = c.create_text(200,200,text='SNAP! You score 1 point')
+    c.pack()
+    root.update_idletasks() #forces to update the progrma immediately
+    time.sleep(1) #wait 1 second while the user reasds the message
+
 
 ############### setup ###############################
 root = Tk()
